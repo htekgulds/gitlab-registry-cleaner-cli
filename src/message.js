@@ -25,7 +25,5 @@ komutunu da kullanabilirsiniz.
 ${chalk.yellow('2.')} Ortam değişkenleriyle. Aşağıdaki ortam değişkenlerini kullanabilirsiniz:
 
   export ${chalk.blue('GITLAB_BASE_URL')}=${chalk.dim('"https://git.company.com"')}
-  export ${chalk.blue('GITLAB_TOKEN')}=${chalk.dim('"xxx"')}
-`, { padding: 1 }))
-  console.log()
+  export ${chalk.blue('GITLAB_TOKEN')}=${chalk.dim('"xxx"')}`, { padding: 1 }))
 }
