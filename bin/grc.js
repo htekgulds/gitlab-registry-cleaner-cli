@@ -16,13 +16,16 @@ debug(() => dotenvFlow.config())
 const config = Config.set()
 debug(() => console.log('Config', config))
 
-// Warn if Gitlab settings not present
-if (!Config.isValid()) warnConfigNotFound()
+// Warn if Gitlab settings not present and exit
+if (!Config.isValid()) {
+  warnConfigNotFound()
+  process.exit(1)
+}
 
 Gitlab.setup(config)
 
 // TODO: i18n (en)
-yargs(hideBin(process.argv))
+await yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
   .command('stats', 'İmaj istatistikleri', stats)
   .command('cleanup', 'İmajları temizle', cleanup)
