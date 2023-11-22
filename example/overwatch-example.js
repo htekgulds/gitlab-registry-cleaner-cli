@@ -47,7 +47,7 @@ Win rate: ${profile.games.competitive.win_rate}`)
   })
 }
 
-// To try this file, uncomment this line and run 'node src/overwatch-example.js'
+// To try this file, uncomment this line and run 'node example/overwatch-example.js'
 // For inputs you can try 'PC', 'EU' and 'Fishie#21494'
 //
 // main()
