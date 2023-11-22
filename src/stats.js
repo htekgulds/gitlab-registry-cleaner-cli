@@ -1,21 +1,20 @@
 import { intro, note, outro, select, spinner } from '@clack/prompts'
-import Gitlab from './gitlab/config.js'
+import chalk from 'chalk'
+
 import getRepositoriesFromGroups from './gitlab/getRepositoriesFromGroups.js'
 import getRepositoryDetails from './gitlab/getRepositoryDetails.js'
 import { filterByCount, sumByGroup } from './gitlab/util.js'
-import chalk from 'chalk'
+import getTopLevelGroups from './gitlab/getTopLevelGroups.js'
 
 export default async function stats (argv) {
-  intro('İmaj İstatistikleri Hesaplanıyor')
+  intro('İmaj İstatistikleri')
 
-  const groups = await Gitlab.client.get('/groups', { params: { top_level_only: true } })
+  const groups = await getTopLevelGroups()
 
   const selectedGroup = await select({
     message: 'Taranacak Gitlab grubunu seçin',
-    options: groups.data.map(i => ({ value: i.id, label: i.name }))
+    options: groups.map(i => ({ value: i.id, label: i.name }))
   })
-
-  console.log('Selected Group:', selectedGroup)
 
   const s = spinner()
   s.start()
