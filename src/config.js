@@ -22,6 +22,8 @@ const Config = {
 
     this._config.gitlabBaseUrl = process.env.GITLAB_BASE_URL || configFromFile.gitlabBaseUrl
     this._config.gitlabToken = process.env.GITLAB_TOKEN || configFromFile.gitlabToken
+
+    return this._config
   },
   isValid () {
     return this._config.gitlabBaseUrl && this._config.gitlabToken

@@ -8,15 +8,18 @@ import { stats, cleanup } from '../src/index.js'
 import Config from '../src/config.js'
 import { debug } from '../src/util.js'
 import { warnConfigNotFound } from '../src/message.js'
+import Gitlab from '../src/gitlab.js'
 
 // Get options from .env file while developing for ease of use
 debug(() => dotenvFlow.config())
 
-Config.set()
-debug(() => console.log('Config', Config.get()))
+const config = Config.set()
+debug(() => console.log('Config', config))
 
 // Warn if Gitlab settings not present
 if (!Config.isValid()) warnConfigNotFound()
+
+Gitlab.setup(config)
 
 // TODO: i18n (en)
 yargs(hideBin(process.argv))
