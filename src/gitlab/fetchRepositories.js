@@ -1,4 +1,4 @@
-const Gitlab = require('./config.js')
+import Gitlab from './config.js'
 
 // Find all repositories under given group recursively
 export default async function fetchRepositories (groupId, page = 1, perPage = 100) {

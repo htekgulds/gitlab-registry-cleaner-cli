@@ -8,7 +8,7 @@ import { stats, cleanup } from '../src/index.js'
 import Config from '../src/config.js'
 import { debug } from '../src/util.js'
 import { warnConfigNotFound } from '../src/message.js'
-import Gitlab from '../src/gitlab.js'
+import Gitlab from '../src/gitlab/config.js'
 
 // Get options from .env file while developing for ease of use
 debug(() => dotenvFlow.config())

@@ -1,5 +1,5 @@
-const Gitlab = require('./config.js')
-const { groupByTagSuffix } = require('./util.js')
+import Gitlab from './config.js'
+import { groupByTagSuffix } from './util.js'
 
 export default function getRepositoryDetails (repositories) {
   const response = repositories.map(async (repo) => {

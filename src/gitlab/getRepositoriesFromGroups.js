@@ -1,4 +1,4 @@
-const { fetchRepositories } = require('./util')
+import fetchRepositories from './fetchRepositories.js'
 
 export default async function getRepositoriesFromGroups (groupIds) {
   // Fetch repositories under given groups
