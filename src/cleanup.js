@@ -76,7 +76,7 @@ Temizlemeye dahil edilecek imaj sayısı: ${chalk.yellow(filteredWithTags.length
 
   await Promise.all(results)
 
-  note(`İmajlar sürümleri başarıyla temizlendi.
+  note(`İmaj sürümleri başarıyla temizlendi.
 İmajların diskten kalıcı olarak silinmesi için aşağıdaki komutu Gitlab sunucusunda çalıştırmanız gerekmektedir:
 ${chalk.green('sudo gitlab-ctl registry-garbage-collect -m')}`)
 
