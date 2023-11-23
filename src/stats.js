@@ -27,12 +27,11 @@ export default async function stats (argv) {
 
   s.stop()
 
-  note(`Toplam tekil imaj: ${chalk.yellow(repositories.length)}
-Tüm Sürüm Etiketleri:
-${Object.keys(allTags).map(key => `\n  ${key}: ${chalk.yellow(allTags[key])}`)}
+  console.log({
+    'Toplam Depo': repositories.length,
+    'Tüm Sürüm Etiketleri': allTags,
+    'Temizlenmesi Gereken Depo Sayısı': filteredTags.length
+  })
 
-Temizlenmesi Gereken Depo Sayısı: ${chalk.yellow(filteredTags.length)}
-`)
-
-  outro('Bitti!')
+  outro(`Temizleme işlemi için ${chalk.green('grc cleanup')} komutunu çalıştırabilirsiniz`)
 }
