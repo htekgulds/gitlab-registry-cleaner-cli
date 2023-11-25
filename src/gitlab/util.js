@@ -1,4 +1,4 @@
-import { getSuffix } from '../parser.js'
+import { getSuffix } from '../util.js'
 
 export function groupByTagSuffix (items) {
   const obj = items.reduce((all, tag) => {
