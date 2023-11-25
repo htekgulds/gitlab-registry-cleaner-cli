@@ -2,7 +2,7 @@ import boxen from 'boxen'
 import chalk from 'chalk'
 import Config from './config.js'
 
-export function warnConfigNotFound () {
+export default function help () {
   console.log(boxen(`${chalk.yellow('Uyarı:')}
 
 Gitlab ayarları bulunamadı.

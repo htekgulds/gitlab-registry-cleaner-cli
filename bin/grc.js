@@ -7,7 +7,7 @@ import { hideBin } from 'yargs/helpers'
 import { stats, cleanup } from '../src/index.js'
 import Config from '../src/config.js'
 import { debug } from '../src/util.js'
-import { warnConfigNotFound } from '../src/message.js'
+import help from '../src/help.js'
 import Gitlab from '../src/gitlab/config.js'
 
 // Get options from .env file while developing for ease of use
@@ -18,7 +18,7 @@ debug(() => console.log('Config', config))
 
 // Warn if Gitlab settings not present and exit
 if (!Config.isValid()) {
-  warnConfigNotFound()
+  help()
   process.exit(1)
 }
 
