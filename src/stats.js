@@ -1,10 +1,10 @@
-import { intro, note, outro, select, spinner } from '@clack/prompts'
+import { intro, outro, select, spinner } from '@clack/prompts'
 import chalk from 'chalk'
 
 import getRepositoriesFromGroups from './gitlab/getRepositoriesFromGroups.js'
 import getRepositoryDetails from './gitlab/getRepositoryDetails.js'
-import { filterByCount, sumByGroup } from './gitlab/util.js'
 import getTopLevelGroups from './gitlab/getTopLevelGroups.js'
+import { filterByCount, sumByGroup } from './gitlab/util.js'
 
 export default async function stats (argv) {
   intro('İmaj İstatistikleri')
@@ -33,5 +33,9 @@ export default async function stats (argv) {
     'Temizlenmesi Gereken Depo Sayısı': filteredTags.length
   })
 
-  outro(`Temizleme işlemi için ${chalk.green('grc cleanup')} komutunu çalıştırabilirsiniz`)
+  outro(
+    `Temizleme işlemi için ${chalk.green(
+      'grc cleanup'
+    )} komutunu çalıştırabilirsiniz`
+  )
 }
