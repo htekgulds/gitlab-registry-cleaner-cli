@@ -6,7 +6,7 @@ import promptSelectTagToCleanup from './promptSelectTagToCleanup.js'
 import showCleanupSuccess from './showCleanupSuccess.js'
 import showRegistrySummary from './showRegistrySummary.js'
 import deleteImages from './deleteImages.js'
-import getTopLevelGroups from '../gitlab/getTopLevelGroups.js'
+import getTopLevelGroups from '../../gitlab/getTopLevelGroups.js'
 
 export default async function cleanup (isDry) {
   intro('İmajları Temizle')

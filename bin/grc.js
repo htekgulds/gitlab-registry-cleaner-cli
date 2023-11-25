@@ -4,11 +4,12 @@ import yargs from 'yargs/yargs'
 import dotenvFlow from 'dotenv-flow'
 import { hideBin } from 'yargs/helpers'
 
-import { stats, cleanup } from '../src/index.js'
 import Config from '../src/config.js'
 import { debug } from '../src/util.js'
 import help from '../src/help.js'
 import Gitlab from '../src/gitlab/config.js'
+import stats from '../src/commands/stats/index.js'
+import cleanup from '../src/commands/cleanup/index.js'
 
 // Get options from .env file while developing for ease of use
 debug(() => dotenvFlow.config())

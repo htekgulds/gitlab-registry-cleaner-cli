@@ -1,4 +1,4 @@
-import Gitlab from '../gitlab/config'
+import Gitlab from '../../gitlab/config'
 
 export default async function deleteImages (details, selectedTag) {
   const results = details.filtered.map(repo => {
