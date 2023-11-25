@@ -24,11 +24,15 @@ if (!Config.isValid()) {
 
 Gitlab.setup(config)
 
-// TODO: i18n (en)
+// TODO: i18n (en, etc.)
 await yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
   .command('stats', 'İmaj istatistikleri', stats)
   .command('cleanup', 'İmajları temizle', cleanup)
-  .demandCommand(1, 1, 'komut boş geçilemez. stats ya da cleanup komutunu kullanın')
+  .demandCommand(
+    1, // min required
+    1, // max required
+    'komut boş geçilemez. stats ya da cleanup komutunu kullanın'
+  )
   .help()
   .parse()
