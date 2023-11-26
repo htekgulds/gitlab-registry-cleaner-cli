@@ -36,11 +36,13 @@ function getConfigPath () {
 // TODO: i18n (en, etc.)
 yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
+  // COMMANDS
   .command('stats', 'İmaj istatistikleri', {}, stats)
   .command('cleanup', 'İmajları temizle', {}, cleanup)
   .command('config', 'Ayarları tanımla', {}, configCommand)
   .options(options) // with default or env values
   .demandCommand(1) // 1 command required
+  // CONFIG
   .config({ extends: getConfigPath() }) // use default config file if exists
   .config(
     'config-path',
@@ -51,5 +53,20 @@ yargs(hideBin(process.argv))
     }
   ) // extra config file if given
   .env('GRC') // use env variables (eg. GRC_MY_VAR) to provide options. Command line arguments take presedence
-  .help()
+  // HELP
+  .describe('help', 'Bu yardım metnini göster')
+  .describe('version', 'Sürüm numarası')
+  .example(
+    '$0 cleanup --config-path=/etc/grc.json',
+    'Ayarları JSON dosyasından al'
+  )
+  .example(
+    '$0 cleanup --url=https://git.mycompany.com --token=xxx --delete-tags-regex=.*-test',
+    'Ayarları arguman olarak al'
+  )
+  .alias('help', 'h')
+  .alias('version', 'v')
+  .epilog(
+    'Daha fazla bilgi için bkz: https://github.com/htekgulds/gitlab-registry-cleaner-cli'
+  )
   .parse()
