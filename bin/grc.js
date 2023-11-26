@@ -10,6 +10,7 @@ import help from '../src/help.js'
 import Gitlab from '../src/gitlab/config.js'
 import stats from '../src/commands/stats/index.js'
 import cleanup from '../src/commands/cleanup/index.js'
+import configCommand from '../src/commands/config/index.js'
 
 // Get options from .env file while developing for ease of use
 debug(() => dotenvFlow.config())
@@ -30,7 +31,7 @@ yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
   .command('stats', 'İmaj istatistikleri', stats)
   .command('cleanup', 'İmajları temizle', cleanup)
-  .command('config', 'Ayarları tanımla', config)
+  .command('config', 'Ayarları tanımla', configCommand)
   .demandCommand(
     1, // min required
     1, // max required
