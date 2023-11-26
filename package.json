@@ -6,7 +6,7 @@
     "grc": "dist/grc.js"
   },
   "scripts": {
-    "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
+    "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify --watch",
     "lint": "standard"
   },
   "author": "",
