@@ -2,12 +2,11 @@
   "name": "gitlab-registry-cleaner-cli",
   "version": "0.1.0",
   "description": "Gitlab Registry Cleaner CLI",
-  "type": "module",
-  "main": "src/index.js",
   "bin": {
-    "grc": "bin/grc.js"
+    "grc": "dist/grc.js"
   },
   "scripts": {
+    "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
     "lint": "standard"
   },
   "author": "",
@@ -22,6 +21,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "esbuild": "^0.19.7",
     "standard": "^17.1.0"
   }
 }

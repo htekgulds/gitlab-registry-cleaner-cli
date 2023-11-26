@@ -1,4 +1,4 @@
-import { getSuffix } from '../util.js'
+import { getSuffix } from '../util'
 
 export function groupByTagSuffix (items) {
   const obj = items.reduce((all, tag) => {
@@ -22,7 +22,10 @@ export function groupByTagSuffix (items) {
 export function filterByCount (list, groupCount = 5, totalCount = 5) {
   return list
     .filter(repo => repo.tags_count > totalCount)
-    .map(repo => ({ ...repo, tags: repo.tags.filter(tag => tag.list.length > groupCount) }))
+    .map(repo => ({
+      ...repo,
+      tags: repo.tags.filter(tag => tag.list.length > groupCount)
+    }))
     .filter(repo => repo.tags.length !== 0)
 }
 

@@ -1,10 +1,10 @@
 import { intro, outro, select, spinner } from '@clack/prompts'
 import chalk from 'chalk'
 
-import getRepositoriesFromGroups from '../gitlab/getRepositoriesFromGroups.js'
-import getRepositoryDetails from '../gitlab/getRepositoryDetails.js'
-import getTopLevelGroups from '../gitlab/getTopLevelGroups.js'
-import { filterByCount, sumByGroup } from '../gitlab/util.js'
+import getRepositoriesFromGroups from '../../gitlab/getRepositoriesFromGroups'
+import getRepositoryDetails from '../../gitlab/getRepositoryDetails'
+import getTopLevelGroups from '../../gitlab/getTopLevelGroups'
+import { filterByCount, sumByGroup } from '../../gitlab/util'
 
 export default async function stats (argv) {
   intro('İmaj İstatistikleri')

@@ -26,7 +26,7 @@ if (!Config.isValid()) {
 Gitlab.setup(config)
 
 // TODO: i18n (en, etc.)
-await yargs(hideBin(process.argv))
+yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
   .command('stats', 'İmaj istatistikleri', stats)
   .command('cleanup', 'İmajları temizle', cleanup)
