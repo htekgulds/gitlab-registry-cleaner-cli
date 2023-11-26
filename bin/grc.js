@@ -30,6 +30,7 @@ await yargs(hideBin(process.argv))
   .usage('Kullanım: $0 <command>')
   .command('stats', 'İmaj istatistikleri', stats)
   .command('cleanup', 'İmajları temizle', cleanup)
+  .command('config', 'Ayarları tanımla', config)
   .demandCommand(
     1, // min required
     1, // max required
