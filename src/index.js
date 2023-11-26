@@ -16,12 +16,11 @@ function getConfigPath () {
 
 export default async function main () {
   // TODO: i18n (en, etc.)
-  await yargs(hideBin(process.argv))
+  const parser = yargs(hideBin(process.argv))
     .usage('Kullanım: $0 <command>')
     // COMMANDS
     .command('stats', 'İmaj istatistikleri', {}, stats)
     .command('cleanup', 'İmajları temizle', {}, cleanup)
-    // .command('config', 'Ayarları tanımla', {}, config) // debug amaçlı
     .options(options) // with default or env values
     .alias('help', 'h')
     .alias('version', 'v')
@@ -52,5 +51,11 @@ export default async function main () {
     .epilog(
       'Daha fazla bilgi için bkz: https://github.com/htekgulds/gitlab-registry-cleaner-cli'
     )
-    .parse()
+
+  // Debug command
+  debug(() => {
+    parser.command('config', 'Ayarları kontrol et', {}, config) // debug amaçlı
+  })
+
+  await parser.parse()
 }
