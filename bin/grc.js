@@ -3,6 +3,7 @@
 import fs from 'fs'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
+import dotenvFlow from 'dotenv-flow'
 
 import Config from '../src/config.js'
 import { debug } from '../src/util.js'
@@ -13,6 +14,9 @@ import cleanup from '../src/commands/cleanup/index.js'
 import configCommand from '../src/commands/config/index.js'
 import { CONFIG_PATH } from '../src/defaults.js'
 import options from '../src/commands/options.js'
+
+// Get options from .env file while developing for ease of use
+debug(() => dotenvFlow.config())
 
 // const config = Config.set()
 // debug(() => console.log('Config', config))
@@ -46,5 +50,6 @@ yargs(hideBin(process.argv))
       return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
     }
   ) // extra config file if given
+  .env('GRC') // use env variables (eg. GRC_MY_VAR) to provide options. Command line arguments take presedence
   .help()
   .parse()

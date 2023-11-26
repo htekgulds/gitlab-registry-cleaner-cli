@@ -1,7 +1,5 @@
 import {
   DELETE_TAGS_REGEX,
-  GITLAB_BASE_URL,
-  GITLAB_TOKEN,
   GROUP_TAGS_REGEX,
   KEEP_N,
   OLDER_THAN
@@ -11,14 +9,12 @@ export default {
   'gitlab-base-url': {
     alias: 'url',
     describe:
-      'Gitlab uygulamasının adresi (ör. https://git.mycompany.com)' /* 'Base url for gitlab instance. (eg. https:/git.company.com)' */,
-    default: GITLAB_BASE_URL
+      'Gitlab uygulamasının adresi (ör. https://git.mycompany.com)' /* 'Base url for gitlab instance. (eg. https:/git.company.com)' */
   },
   'gitlab-token': {
     alias: 'token',
     describe:
-      'İmajları silmeye yetkili Gitlab access token' /* 'Gitlab Access token authorized to delete given tags' */,
-    default: GITLAB_TOKEN
+      'İmajları silmeye yetkili Gitlab access token' /* 'Gitlab Access token authorized to delete given tags' */
   },
   'keep-n': {
     describe:
