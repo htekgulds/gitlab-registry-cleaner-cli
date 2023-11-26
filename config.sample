@@ -1,6 +1,6 @@
 {
-    "url": "https://hello.com",
-    "token": "xxx",
+    "url": "https://git.mycompany.com",
+    "token": "abcdef",
     "keepN": 3,
     "olderThan": "3d",
     "dryRun": true
