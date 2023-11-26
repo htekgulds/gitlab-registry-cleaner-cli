@@ -18,7 +18,7 @@ export default {
   },
   'keep-n': {
     describe:
-      'Son yüklenen n kadar imajı silemden bırak' /* 'Keep n number of latest tags while deleting' */,
+      'Son yüklenen n kadar imajı silmeden bırak' /* 'Keep n number of latest tags while deleting' */,
     default: KEEP_N
   },
   'older-than': {
