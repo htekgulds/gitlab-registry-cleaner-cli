@@ -21,7 +21,7 @@ export default async function main () {
     // COMMANDS
     .command('stats', 'İmaj istatistikleri', {}, stats)
     .command('cleanup', 'İmajları temizle', {}, cleanup)
-    .command('config', 'Ayarları tanımla', {}, config)
+    // .command('config', 'Ayarları tanımla', {}, config) // debug amaçlı
     .options(options) // with default or env values
     .alias('help', 'h')
     .alias('version', 'v')
