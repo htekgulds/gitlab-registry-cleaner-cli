@@ -2,7 +2,6 @@
 
 import fs from 'fs'
 import yargs from 'yargs/yargs'
-import dotenvFlow from 'dotenv-flow'
 import { hideBin } from 'yargs/helpers'
 
 import Config from '../src/config.js'
@@ -12,16 +11,8 @@ import Gitlab from '../src/gitlab/config.js'
 import stats from '../src/commands/stats/index.js'
 import cleanup from '../src/commands/cleanup/index.js'
 import configCommand from '../src/commands/config/index.js'
-import {
-  CONFIG_PATH,
-  DELETE_TAGS_REGEX,
-  GROUP_TAGS_REGEX,
-  KEEP_N,
-  OLDER_THAN
-} from '../src/defaults.js'
-
-// Get options from .env file while developing for ease of use
-debug(() => dotenvFlow.config())
+import { CONFIG_PATH } from '../src/defaults.js'
+import options from '../src/commands/options.js'
 
 // const config = Config.set()
 // debug(() => console.log('Config', config))
@@ -44,44 +35,9 @@ yargs(hideBin(process.argv))
   .command('stats', 'İmaj istatistikleri', {}, stats)
   .command('cleanup', 'İmajları temizle', {}, cleanup)
   .command('config', 'Ayarları tanımla', {}, configCommand)
-  .option('gitlab-base-url', {
-    alias: 'url',
-    describe:
-      'Gitlab uygulamasının adresi (ör. https://git.mycompany.com)' /* 'Base url for gitlab instance. (eg. https:/git.company.com)' */
-  })
-  .option('gitlab-token', {
-    alias: 'token',
-    describe:
-      'İmajları silmeye yetkili Gitlab access token' /* 'Gitlab Access token authorized to delete given tags' */
-  })
-  .option('keep-n', {
-    describe:
-      'Son yüklenen n kadar imajı silemden bırak' /* 'Keep n number of latest tags while deleting' */,
-    default: KEEP_N
-  })
-  .option('older-than', {
-    describe:
-      'Verilen zamandan önce yüklenmiş imajları sil' /* 'Delete tags older than given amount of time' */,
-    default: OLDER_THAN
-  })
-  .option('group-tags-regex', {
-    describe:
-      "İmaj sürümlerini verilen regex'e göre grupla (interaktif modda liste çıkarmak için kullanılır)",
-    default: GROUP_TAGS_REGEX
-  })
-  .option('delete-tags-regex', {
-    describe:
-      "İmajları verilen reegx'e göre sil (interaktif olmayan modda kullanılır)",
-    default: DELETE_TAGS_REGEX
-  })
-  .option('dry-run', { describe: 'İmajları gerçekten silme', default: false })
-  .demandCommand(
-    1, // min required
-    1 // max required
-  )
-  .config({
-    extends: getConfigPath()
-  })
+  .options(options) // with default or env values
+  .demandCommand(1) // 1 command required
+  .config({ extends: getConfigPath() }) // use default config file if exists
   .config(
     'config-path',
     'Ayarları içeren JSON formatındaki dosya (ör. /etc/.grc)',
@@ -89,6 +45,6 @@ yargs(hideBin(process.argv))
       debug(() => console.log('Reading config file: ', configPath))
       return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
     }
-  )
+  ) // extra config file if given
   .help()
   .parse()
