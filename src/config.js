@@ -3,10 +3,29 @@ import path from 'path'
 import fs from 'fs'
 import chalk from 'chalk'
 import { debug } from './util.js'
+import {
+  CONFIG_PATH,
+  DELETE_TAGS_REGEX,
+  GROUP_TAGS_REGEX,
+  KEEP_N,
+  OLDER_THAN
+} from './defaults.js'
+
+/**
+ * Options (check defaults.js fiel for defaults):
+ * - gitlabBaseUrl (required)
+ * - gitlabToken (required)
+ * - keepN (optional) (for non-interactive mode)
+ * - olderThan (optional) (for non-interactive mode)
+ * - groupTagsRegex (optional) (for selecting with prompt)
+ * - deleteTagsRegex (optional) (for non-interactive mode)
+ * - dryRun (optional) (do everything except actually deleting images)
+ * - configPath (optional) (you can provide all options from file except this one, which doesn't make any sense 😅)
+ */
 
 const Config = {
   _config: {},
-  path: path.join(os.homedir(), '.grc'),
+  path: CONFIG_PATH,
   get () {
     return this._config
   },
