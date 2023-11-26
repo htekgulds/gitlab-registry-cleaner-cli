@@ -1,0 +1,7 @@
+{
+    "url": "https://hello.com",
+    "token": "xxx",
+    "keepN": 3,
+    "olderThan": "3d",
+    "dryRun": true
+}
