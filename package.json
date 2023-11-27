@@ -8,7 +8,7 @@
   "scripts": {
     "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
     "watch": "npm run build -- --watch",
-    "package": "pkg dist/grc.js --out-path dist/bin -d",
+    "package": "pkg dist/grc.js --out-path dist/bin -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
     "prepackage": "npm run build",
     "prepublish": "npm run package",
     "lint": "standard",
