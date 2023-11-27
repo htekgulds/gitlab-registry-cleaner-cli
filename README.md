@@ -27,7 +27,7 @@ You can provide options to the commands in various ways.
 
 - As command line arguments (eg. --gitlab-base-url)
 - As env variables (eg. GITLAB_BASE_URL)
-- From a JSON file either using the default config path or providing a path with `--config-path` option
+- From a JSON file either using the default config paths or providing a path with `--config-path` option. Default config file paths are `.grc.json` and `$home/.grc.json` so these files are picked up by default.
 
 Here is a list of options with their env variable forms and default values:
 

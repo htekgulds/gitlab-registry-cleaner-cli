@@ -6,21 +6,25 @@ import { debug } from './util.js'
 import stats from './commands/stats/index.js'
 import cleanup from './commands/cleanup/index.js'
 import config from './commands/config/index.js'
-import { CONFIG_PATH } from './defaults.js'
+import { DEFAULT_CONFIG_PATHS } from './defaults.js'
 import options from './commands/options.js'
 import setupGitlabClient from './middlewares/setupGitlabClient.js'
 
 function getConfigPath () {
-  if (fs.existsSync(CONFIG_PATH)) return CONFIG_PATH
+  for (const path of DEFAULT_CONFIG_PATHS) {
+    debug(() => console.log('Checking config file path: ', path))
+    if (fs.existsSync(path)) return path
+  }
 }
 
 export default async function main () {
   // TODO: i18n (en, etc.)
-  const parser = yargs(hideBin(process.argv))
+  await yargs(hideBin(process.argv))
     .usage('Kullanım: $0 <command>')
     // COMMANDS
     .command('stats', 'İmaj istatistikleri', {}, stats)
     .command('cleanup', 'İmajları temizle', {}, cleanup)
+    .command('config', 'Ayarları kontrol et', {}, config) // debug amaçlı
     .options(options) // with default or env values
     .alias('help', 'h')
     .alias('version', 'v')
@@ -51,11 +55,5 @@ export default async function main () {
     .epilog(
       'Daha fazla bilgi için bkz: https://github.com/htekgulds/gitlab-registry-cleaner-cli'
     )
-
-  // Debug command
-  debug(() => {
-    parser.command('config', 'Ayarları kontrol et', {}, config) // debug amaçlı
-  })
-
-  await parser.parse()
+    .parse()
 }

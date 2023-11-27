@@ -5,7 +5,8 @@ export default function setupGitlabClient (argv) {
   debug(() => console.log('Setting up Gitlab client'))
 
   if (!argv.url || !argv.token) {
-    throw Error('Gitlab ayarları bulunamadı')
+    console.error('Gitlab ayarları bulunamadı')
+    process.exit(1)
   }
 
   Gitlab.setup(argv)
