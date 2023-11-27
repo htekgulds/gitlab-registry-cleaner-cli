@@ -1,6 +1,6 @@
 {
   "name": "gitlab-registry-cleaner-cli",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Gitlab Registry Cleaner CLI",
   "bin": {
     "grc": "dist/grc.js"
