@@ -2,6 +2,23 @@
   "name": "gitlab-registry-cleaner-cli",
   "version": "0.2.10",
   "description": "Gitlab Registry Cleaner CLI",
+  "author": "Hasan Tekgül <htekgulds@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htekgulds/gitlab-registry-cleaner-cli.git"
+  },
+  "keywords": [
+    "nodejs",
+    "docker",
+    "cli",
+    "registry",
+    "gitlab",
+    "cleaner",
+    "pkg",
+    "esbuild",
+    "yargs"
+  ],
   "bin": {
     "grc": "dist/index.js"
   },
@@ -11,8 +28,6 @@
     "package": "pkg dist/index.js --out-path pkg -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
     "lint": "standard"
   },
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@clack/prompts": "^0.7.0",
     "axios": "^1.6.2",
