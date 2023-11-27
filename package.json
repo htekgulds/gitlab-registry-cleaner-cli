@@ -9,6 +9,8 @@
     "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
     "watch": "npm run build -- --watch",
     "package": "pkg dist/grc.js --out-path dist/bin -d",
+    "prepackage": "npm run build",
+    "prepublish": "npm run package",
     "lint": "standard",
     "grc": "node -r 'dotenv-flow/config' dist/grc.js"
   },
