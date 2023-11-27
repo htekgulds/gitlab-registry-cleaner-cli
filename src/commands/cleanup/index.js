@@ -1,25 +1,23 @@
 import { intro, outro } from '@clack/prompts'
-import getCleanupDetails from './getCleanupDetails.js'
+import getCleanupDetails from '../common/getCleanupDetails.js'
+import promptSelectGroups from '../common/promptSelectGroups.js'
 import promptConfirm from './promptConfirm.js'
-import promptSelectGroups from './promptSelectGroups.js'
 import promptSelectTagToCleanup from './promptSelectTagToCleanup.js'
 import showCleanupSuccess from './showCleanupSuccess.js'
 import showRegistrySummary from './showRegistrySummary.js'
 import deleteImages from './deleteImages.js'
-import getTopLevelGroups from '../../gitlab/getTopLevelGroups.js'
 
-export default async function cleanup (isDry) {
+export default async function cleanup (argv) {
   intro('İmajları Temizle')
 
-  const topLevelGroups = await getTopLevelGroups()
-  const selectedGroups = await promptSelectGroups(topLevelGroups)
+  const selectedGroups = await promptSelectGroups(argv.groups)
   const details = await getCleanupDetails(selectedGroups)
 
   showRegistrySummary(details)
 
   const selectedTag = await promptSelectTagToCleanup(details.tags)
   await promptConfirm()
-  if (!isDry) {
+  if (!argv.dryRun) {
     // !!! Attention: actually delete given image tags. This action cannot be reversed!
     await deleteImages(details, selectedTag)
   }

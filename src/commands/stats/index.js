@@ -1,36 +1,21 @@
-import { intro, outro, select, spinner } from '@clack/prompts'
+import { intro, outro } from '@clack/prompts'
 import chalk from 'chalk'
 
-import getRepositoriesFromGroups from '../../gitlab/getRepositoriesFromGroups'
-import getRepositoryDetails from '../../gitlab/getRepositoryDetails'
-import getTopLevelGroups from '../../gitlab/getTopLevelGroups'
-import { filterByCount, sumByGroup } from '../../gitlab/util'
+import getCleanupDetails from '../common/getCleanupDetails'
+import promptSelectGroups from '../common/promptSelectGroups'
 
 export default async function stats (argv) {
   intro('İmaj İstatistikleri')
 
-  const groups = await getTopLevelGroups()
+  console.log('Args:', argv)
 
-  const selectedGroup = await select({
-    message: 'Taranacak Gitlab grubunu seçin',
-    options: groups.map(i => ({ value: i.id, label: i.name }))
-  })
-
-  const s = spinner()
-  s.start()
-
-  const repositories = await getRepositoriesFromGroups([selectedGroup])
-  const withTags = await getRepositoryDetails(repositories)
-
-  const filteredTags = filterByCount(withTags, 5)
-  const allTags = sumByGroup(withTags)
-
-  s.stop()
+  const selectedGroups = await promptSelectGroups(argv.groups)
+  const details = await getCleanupDetails(selectedGroups)
 
   console.log({
-    'Toplam Depo': repositories.length,
-    'Tüm Sürüm Etiketleri': allTags,
-    'Temizlenmesi Gereken Depo Sayısı': filteredTags.length
+    'Toplam Depo': details.repositories.length,
+    'Temizlenmesi Gereken Depo Sayısı': details.filtered.length,
+    'Tüm Sürüm Etiketleri': details.tags
   })
 
   outro(
