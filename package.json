@@ -11,8 +11,7 @@
     "package": "pkg dist/grc.js --out-path dist/bin -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
     "prepackage": "npm run build",
     "prepublish": "npm run package",
-    "lint": "standard",
-    "grc": "node -r 'dotenv-flow/config' dist/grc.js"
+    "lint": "standard"
   },
   "author": "",
   "license": "MIT",
@@ -24,7 +23,6 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "dotenv-flow": "^4.0.1",
     "esbuild": "^0.19.7",
     "pkg": "^5.8.1",
     "standard": "^17.1.0"
