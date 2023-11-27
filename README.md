@@ -1,5 +1,7 @@
 # Gitlab Registry Cleaner CLI (grc)
 
+![npm](https://img.shields.io/npm/v/gitlab-registry-cleaner-cli) ![NPM](https://img.shields.io/npm/l/gitlab-registry-cleaner-cli)
+
 Hello there!
 
 This is my first real (kinda) open source project. It is a container registry cleaner cli tool for Gitlab. There are currently 2 commands: `stats` and `cleanup`
