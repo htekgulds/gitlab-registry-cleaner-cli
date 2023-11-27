@@ -8,6 +8,7 @@
   "scripts": {
     "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
     "watch": "npm run build -- --watch",
+    "package": "pkg dist/grc.js --out-path dist/bin -d",
     "lint": "standard"
   },
   "author": "",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "esbuild": "^0.19.7",
+    "pkg": "^5.8.1",
     "standard": "^17.1.0"
   }
 }
