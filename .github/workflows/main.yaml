@@ -16,6 +16,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: ls -al
+      # - run: ls -al dist
+      # - run: cat .gitignore
+      # - run: npm build
       # - run: npm publish
       # - run: npm run package
         env:
