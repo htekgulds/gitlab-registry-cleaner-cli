@@ -3,12 +3,12 @@
   "version": "0.2.10",
   "description": "Gitlab Registry Cleaner CLI",
   "bin": {
-    "grc": "dist/grc.js"
+    "grc": "dist/index.js"
   },
   "scripts": {
-    "build": "esbuild bin/grc.js --platform=node --bundle --outdir=dist --minify",
+    "build": "esbuild bin/grc.js --platform=node --bundle --outfile=dist/index.js --minify",
     "watch": "npm run build -- --watch",
-    "package": "pkg dist/grc.js --out-path pkg -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
+    "package": "pkg dist/index.js --out-path pkg -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
     "lint": "standard"
   },
   "author": "",
