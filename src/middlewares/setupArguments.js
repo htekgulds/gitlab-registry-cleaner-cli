@@ -5,7 +5,7 @@ export default function setupArguments (argv) {
   logger.debug('Setting up arguments', argv)
 
   if (argv.verbose) {
-    DebugConfig.level = argv.verbose + 1
+    DebugConfig.level = argv.verbose
   }
 
   if (argv.groups) {
