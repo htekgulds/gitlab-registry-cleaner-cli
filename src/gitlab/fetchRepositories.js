@@ -1,4 +1,4 @@
-import { debug } from '../util.js'
+import { logger } from '../util.js'
 import Gitlab from './config.js'
 
 // Find all repositories under given group recursively
@@ -8,7 +8,7 @@ export default async function fetchRepositories (
   perPage = 100
 ) {
   try {
-    debug(() => console.log(`Depolar çekiliyor: ${groupId} - sayfa: ${page}`))
+    logger.info(`Depolar çekiliyor: ${groupId} - sayfa: ${page}`)
     const response = await Gitlab.client.get(
       `/groups/${groupId}/registry/repositories`,
       {
@@ -20,7 +20,7 @@ export default async function fetchRepositories (
 
     // Base case: No more items to fetch
     if (items.length === 0) {
-      debug(() => console.log('Başka kalmadı, döngüden çıkıyorum...'))
+      logger.info('Başka kalmadı, döngüden çıkıyorum...')
       return []
     }
 

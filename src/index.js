@@ -2,7 +2,7 @@ import fs from 'fs'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
 
-import { debug } from './util.js'
+import { logger } from './util.js'
 import stats from './commands/stats/index.js'
 import cleanup from './commands/cleanup/index.js'
 import config from './commands/config/index.js'
@@ -13,7 +13,7 @@ import setupArguments from './middlewares/setupArguments.js'
 
 function getConfigPath () {
   for (const path of DEFAULT_CONFIG_PATHS) {
-    debug(() => console.log('Checking config file path: ', path))
+    logger.info('Checking config file path: ', path)
     if (fs.existsSync(path)) return path
   }
 }
@@ -40,7 +40,7 @@ export default async function main () {
       'config-path',
       'Ayarları içeren JSON formatındaki dosya (ör. /etc/.grc)',
       configPath => {
-        debug(() => console.log('Reading config file: ', configPath))
+        logger.info('Reading config file: ', configPath)
         return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       }
     ) // extra config file if given

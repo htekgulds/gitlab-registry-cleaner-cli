@@ -1,5 +1,5 @@
 import { GROUP_TAGS_REGEX } from '../defaults'
-import { debug } from '../util'
+import { logger } from '../util'
 
 export const GroupBy = {
   regex: GROUP_TAGS_REGEX,
@@ -7,7 +7,7 @@ export const GroupBy = {
     const obj = items.reduce((all, tag) => {
       const match = tag.match(this.regex)
       const suffix = match?.groups?.suffix || 'no-suffix'
-      debug(() => console.log('Match:', suffix))
+      logger.info('Match:', suffix)
 
       const current = all[suffix]?.list || []
 

@@ -1,10 +1,10 @@
-import { debug } from '../util.js'
+import { logger } from '../util.js'
 import Gitlab from './config.js'
 import { GroupBy } from './util.js'
 
 export default function getRepositoryDetails (repositories) {
   const response = repositories.map(async repo => {
-    debug(() => console.log(`Deponun detayları çekiliyor: ${repo.path}`))
+    logger.info(`Deponun detayları çekiliyor: ${repo.path}`)
 
     const details = await Gitlab.client.get(
       `/registry/repositories/${repo.id}`,

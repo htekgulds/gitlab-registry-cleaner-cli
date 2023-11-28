@@ -1,8 +1,8 @@
 import { GroupBy } from '../gitlab/util'
-import { debug } from '../util'
+import { logger } from '../util'
 
 export default function setupArguments (argv) {
-  debug(() => console.log('Setting up arguments'))
+  logger.info('Setting up arguments')
 
   if (argv.groups) {
     argv.groups = String(argv.groups)
