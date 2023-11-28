@@ -1,8 +1,12 @@
-import { getSuffix } from '../util'
+import { GROUP_TAGS_REGEX } from '../defaults'
+import { debug } from '../util'
 
-export function groupByTagSuffix (items) {
+export function groupByTagSuffix (items, regex = GROUP_TAGS_REGEX) {
   const obj = items.reduce((all, tag) => {
-    const suffix = getSuffix(tag)
+    const match = tag.match(regex)
+    const suffix = match?.groups?.suffix || 'no-suffix'
+    debug(() => console.log('Match:', suffix))
+
     const current = all[suffix]?.list || []
 
     return {

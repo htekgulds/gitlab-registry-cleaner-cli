@@ -4,11 +4,10 @@ import { GROUP_TAGS_REGEX } from './defaults'
 
 export function getSuffix (tag) {
   const match = tag.match(GROUP_TAGS_REGEX)
-  debug(() => console.log('Match:', match))
+  const result = match?.groups?.suffix || 'no-suffix'
+  debug(() => console.log('Match:', result))
 
-  if (match) return match[2]
-
-  return null
+  return result
 }
 
 export function debug (fn, condition = process.env.NODE_ENV === 'development') {
