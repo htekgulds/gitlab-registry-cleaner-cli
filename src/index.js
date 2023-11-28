@@ -14,7 +14,7 @@ import chalk from 'chalk'
 
 function getConfigPath () {
   for (const path of DEFAULT_CONFIG_PATHS) {
-    logger.debug('Checking config file path: ', chalk.blue(path))
+    logger.info('Checking config file path: ', chalk.blue(path))
     if (fs.existsSync(path)) return path
   }
 }
@@ -40,7 +40,7 @@ export default async function main () {
       'config-path',
       'Ayarları içeren JSON formatındaki dosya (ör. /etc/.grc)',
       configPath => {
-        logger.debug('Reading config file:', chalk.blue(configPath))
+        logger.info('Reading config file:', chalk.blue(configPath))
         return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       }
     ) // extra config file if given
