@@ -3,9 +3,9 @@ import { debug } from '../util'
 
 export const GroupBy = {
   regex: GROUP_TAGS_REGEX,
-  tagSuffix (items, regex = GROUP_TAGS_REGEX) {
+  tagSuffix (items) {
     const obj = items.reduce((all, tag) => {
-      const match = tag.match(regex)
+      const match = tag.match(this.regex)
       const suffix = match?.groups?.suffix || 'no-suffix'
       debug(() => console.log('Match:', suffix))
 
