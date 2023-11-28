@@ -4,9 +4,7 @@
 
 **Hello there! :wave:**
 
-This is my first real (_kinda_) open source project. It is a container registry cleaner cli tool for Gitlab. There are currently 2 commands: `stats` and `cleanup`
-
-`stats` for registry statistics and `cleanup` for actually cleaning up the container registry.
+This is my first real (_kinda_) open source project. It is a container registry cleaner cli tool for Gitlab. You can get statistics about your image tags, or bulk-delete some of them based on suffixes. This tool is useful when you want to cleanup unused and old images within your self-hosted Gitlab instance in bulks. There are other projects like this one (mentioned below) but as far as i can see, all of them are focused on single project cleaning, which you need to setup per project and that is a lot of work! I needed a bulk-cleaner that i can run and clean all of the images in my Gitlab instance and this project was born.
 
 ## Installation
 
@@ -30,6 +28,7 @@ You can use the tool with the `grc` command (`grc --help` for all the available 
 
 - `stats`: Get image statistics. Uses `group-tags-regex` option for calculating a group-by-summary
 - `cleanup`: Cleanup images according to options
+- `config`: Check options and Gitlab connection (debug command)
 
 ### Options
 
