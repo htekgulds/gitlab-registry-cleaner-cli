@@ -6,7 +6,7 @@ export const GroupBy = {
   tagSuffix (items) {
     const obj = items.reduce((all, tag) => {
       const match = tag.match(this.regex)
-      const suffix = match?.groups?.suffix || 'no-suffix'
+      const suffix = match?.groups?.suffix || '[no-suffix]'
       logger.debug('Match:', match)
 
       const current = all[suffix]?.list || []
