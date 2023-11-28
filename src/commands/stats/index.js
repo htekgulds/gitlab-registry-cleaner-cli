@@ -17,15 +17,11 @@ Temizlenmesi Gereken Depo Sayısı: ${chalk.yellow(details.filtered.length)},
 Tüm Sürüm Etiketleri:
 
 ${Object.keys(details.tags)
-  .map(key => `* ${key}: ${chalk.yellow(details.tags[key])}`)
+  .map(key => `${chalk.green('*')} ${key}: ${chalk.yellow(details.tags[key])}`)
   .join('\n')}
 `,
     'Sonuçlar'
   )
 
-  outro(
-    `Temizleme işlemi için ${chalk.green(
-      'grc cleanup'
-    )} komutunu çalıştırabilirsiniz`
-  )
+  outro(`Temizleme işlemi için ${chalk.green('grc cleanup')} komutunu çalıştırabilirsiniz`)
 }
