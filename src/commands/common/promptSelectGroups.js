@@ -2,7 +2,7 @@ import { cancel, isCancel, multiselect } from '@clack/prompts'
 import getTopLevelGroups from '../../gitlab/getTopLevelGroups'
 
 export default async function promptSelectGroups (groupsFromOptions) {
-  if (groupsFromOptions) return groupsFromOptions.split(',')
+  if (groupsFromOptions) return groupsFromOptions
 
   const groups = await getTopLevelGroups()
 
