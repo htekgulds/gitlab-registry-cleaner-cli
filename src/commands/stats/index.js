@@ -9,8 +9,7 @@ export default async function stats (argv) {
   intro('İmaj İstatistikleri')
 
   // TODO: should be normalized in a middleware or something
-  const groupsFromOptions = String(argv.groups)?.split(',').filter(i => i && i.trim() !== '')
-  const selectedGroups = await promptSelectGroups(groupsFromOptions)
+  const selectedGroups = await promptSelectGroups(argv.groups)
   const details = await getCleanupDetails(selectedGroups)
 
   console.log({

@@ -9,6 +9,7 @@ import config from './commands/config/index.js'
 import { DEFAULT_CONFIG_PATHS } from './defaults.js'
 import options from './commands/options.js'
 import setupGitlabClient from './middlewares/setupGitlabClient.js'
+import setupArguments from './middlewares/setupArguments.js'
 
 function getConfigPath () {
   for (const path of DEFAULT_CONFIG_PATHS) {
@@ -31,6 +32,7 @@ export default async function main () {
     .describe('help', 'Bu yardım metnini göster')
     .describe('version', 'Sürüm numarası')
     .middleware(setupGitlabClient)
+    .middleware(setupArguments)
     .demandCommand(1) // 1 command required
     // CONFIG
     .config({ extends: getConfigPath() }) // use default config file if exists

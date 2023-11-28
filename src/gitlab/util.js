@@ -1,23 +1,26 @@
 import { GROUP_TAGS_REGEX } from '../defaults'
 import { debug } from '../util'
 
-export function groupByTagSuffix (items, regex = GROUP_TAGS_REGEX) {
-  const obj = items.reduce((all, tag) => {
-    const match = tag.match(regex)
-    const suffix = match?.groups?.suffix || 'no-suffix'
-    debug(() => console.log('Match:', suffix))
+export const GroupBy = {
+  regex: GROUP_TAGS_REGEX,
+  tagSuffix (items, regex = GROUP_TAGS_REGEX) {
+    const obj = items.reduce((all, tag) => {
+      const match = tag.match(regex)
+      const suffix = match?.groups?.suffix || 'no-suffix'
+      debug(() => console.log('Match:', suffix))
 
-    const current = all[suffix]?.list || []
+      const current = all[suffix]?.list || []
 
-    return {
-      ...all,
-      [suffix]: {
-        list: [...current, tag]
+      return {
+        ...all,
+        [suffix]: {
+          list: [...current, tag]
+        }
       }
-    }
-  }, {})
+    }, {})
 
-  return Object.keys(obj).map(key => ({ group: key, ...obj[key] }))
+    return Object.keys(obj).map(key => ({ group: key, ...obj[key] }))
+  }
 }
 
 // 1. 5'ten az imajı olan depoları sayma
