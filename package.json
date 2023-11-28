@@ -1,6 +1,6 @@
 {
   "name": "gitlab-registry-cleaner-cli",
-  "version": "0.2.10",
+  "version": "0.3.0",
   "description": "Gitlab Registry Cleaner CLI",
   "author": "Hasan Tekgül <htekgulds@gmail.com>",
   "license": "MIT",
