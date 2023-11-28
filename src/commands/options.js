@@ -30,5 +30,10 @@ export default {
     alias: 'v',
     describe: 'Log ayrıntı seviyesini belirle (eg. -v -> warn, -vv -> debug gibi)',
     count: true
+  },
+  yes: {
+    alias: 'y',
+    describe: 'İmajları silme işlemi için onay sorma (aracın non-interactive çalışması için kullanılır)',
+    boolean: true
   }
 }
