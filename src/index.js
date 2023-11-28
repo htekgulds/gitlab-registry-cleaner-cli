@@ -51,7 +51,7 @@ export default async function main () {
       'Ayarları JSON dosyasından al'
     )
     .example(
-      '$0 cleanup --url=https://git.mycompany.com --token=xxx --delete-tags-regex=.*-test',
+      '$0 cleanup --url=https://git.mycompany.com --token=xxx --delete-tags-suffix=test',
       'Ayarları arguman olarak al'
     )
     .epilog(

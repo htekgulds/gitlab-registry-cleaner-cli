@@ -1,7 +1,9 @@
 import { cancel, isCancel, select } from '@clack/prompts'
 import chalk from 'chalk'
 
-export default async function promptSelectTagToCleanup (tags) {
+export default async function promptSelectTagToCleanup (tags, suffix) {
+  if (suffix) return suffix
+
   const selectedTag = await select({
     message: 'Temizlenecek sürüm etiketini seçin',
     options: Object.keys(tags).map(key => ({

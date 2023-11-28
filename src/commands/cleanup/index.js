@@ -16,7 +16,7 @@ export default async function cleanup (argv) {
 
   showRegistrySummary(details)
 
-  const selectedTag = await promptSelectTagToCleanup(details.tags)
+  const selectedTag = await promptSelectTagToCleanup(details.tags, argv.deleteTagsSuffix)
   await promptConfirm(argv.dryRun)
   if (!argv.dryRun) {
     // !!! Attention: actually delete given image tags. This action cannot be reversed!

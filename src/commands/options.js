@@ -1,4 +1,4 @@
-import { DELETE_TAGS_REGEX, GROUP_TAGS_REGEX, KEEP_N, OLDER_THAN } from '../defaults'
+import { GROUP_TAGS_REGEX, KEEP_N, OLDER_THAN } from '../defaults'
 
 export default {
   'gitlab-base-url': {
@@ -22,9 +22,8 @@ export default {
     describe: "İmaj sürümlerini verilen regex'e göre grupla (interaktif modda liste çıkarmak için kullanılır)",
     default: GROUP_TAGS_REGEX
   },
-  'delete-tags-regex': {
-    describe: "İmajları verilen reegx'e göre sil (interaktif olmayan modda kullanılır)",
-    default: DELETE_TAGS_REGEX
+  'delete-tags-suffix': {
+    describe: "İmajları verilen reegx'e göre sil (interaktif olmayan modda kullanılır)"
   },
   'dry-run': { describe: 'İmajları gerçekten silme', default: false, boolean: true },
   verbose: {
