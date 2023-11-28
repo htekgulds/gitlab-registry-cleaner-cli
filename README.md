@@ -41,14 +41,16 @@ You can provide options to the commands in various ways.
 
 Here is a list of options with their env variable forms and default values:
 
-- **`gitlab-base-url`:** Base URL of the Gitlab instance. Env variable: `GRC_GITLAB_BASE_URL`. No default value. This option is required for the tool to function.
-- **`gitlab-token`:** Gitlab access token authorized for deleting images. Env variable: `GRC_GITLAB_TOKEN`. No default value. This option is required for the tool to function.
+- **`gitlab-base-url` or `url`:** Base URL of the Gitlab instance. Env variable: `GRC_GITLAB_BASE_URL`. No default value. This option is required for the tool to function.
+- **`gitlab-token` or `token`:** Gitlab access token authorized for deleting images. Env variable: `GRC_GITLAB_TOKEN`. No default value. This option is required for the tool to function.
 - **`keen-n`:** Do not delete `n` number of latest image tags. Env variable: `GRC_KEEP_N`. Default value is `5`.
 - **`older-than`:** Delete image tags older than given time (eg. 5d, 1h). Env variable: `GRC_OLDER_THAN`. Default value is `7d`.
 - **`group-tags-regex`:** Group image tags by given regex when showing image stats or a list of groups to delete. Env variable: `GRC_GROUP_TAGS_REGEX`. Default value is `/^[a-zA-Z0-9.]+(-[0-9]+)?-(.\*)$/`.
 - **`delete-tags-suffix`:** Delete image tags ending with the given suffix. No list will be prompted if this option is provided. Env variable: `GRC_DELETE_TAGS_SUFFIX`. No default value.
 - **`config-path`:** Config file path for getting the option values from. Env variable: `GRC_CONFIG_PATH`. Default value is `$HOME/.grc`.
 - **`dry-run`:** Do not actually delete the image tags. Env variable: `GRC_DRY_RUN`. Default value is `false`.
+- **`verbose` or `v`:** More detailed logs (3 levels: `-v`, `-vv`, `-vvv`).
+- **`yes`:** Do not ask for confirmation before deleting images. This can be used for non-interactive operations (ci/cd or cronjobs).
 
 Example config file content:
 
