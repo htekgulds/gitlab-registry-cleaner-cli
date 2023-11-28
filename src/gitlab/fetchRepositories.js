@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import { logger } from '../util.js'
 import Gitlab from './config.js'
 
@@ -8,7 +9,7 @@ export default async function fetchRepositories (
   perPage = 100
 ) {
   try {
-    logger.info(`Depolar çekiliyor: ${groupId} - sayfa: ${page}`)
+    logger.debug(`Depolar çekiliyor: ${chalk.yellow(groupId)} - sayfa: ${chalk.yellow(page)}`)
     const response = await Gitlab.client.get(
       `/groups/${groupId}/registry/repositories`,
       {
@@ -20,7 +21,7 @@ export default async function fetchRepositories (
 
     // Base case: No more items to fetch
     if (items.length === 0) {
-      logger.info('Başka kalmadı, döngüden çıkıyorum...')
+      logger.debug('Başka kalmadı, döngüden çıkıyorum...')
       return []
     }
 

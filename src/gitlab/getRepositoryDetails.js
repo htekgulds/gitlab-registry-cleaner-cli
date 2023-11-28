@@ -1,20 +1,18 @@
+import chalk from 'chalk'
 import { logger } from '../util.js'
 import Gitlab from './config.js'
 import { GroupBy } from './util.js'
 
 export default function getRepositoryDetails (repositories) {
   const response = repositories.map(async repo => {
-    logger.info(`Deponun detayları çekiliyor: ${repo.path}`)
+    logger.debug(`Deponun detayları çekiliyor: ${chalk.blue(repo.path)}`)
 
-    const details = await Gitlab.client.get(
-      `/registry/repositories/${repo.id}`,
-      {
-        params: {
-          tags: true,
-          tags_count: true
-        }
+    const details = await Gitlab.client.get(`/registry/repositories/${repo.id}`, {
+      params: {
+        tags: true,
+        tags_count: true
       }
-    )
+    })
 
     return {
       id: repo.id,

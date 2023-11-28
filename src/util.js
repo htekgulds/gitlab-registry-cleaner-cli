@@ -18,23 +18,23 @@ export function debug (fn) {
   }
 }
 
-export function log ({ msgs, level = DEFAULT_LEVEL }) {
+export function log ({ msgs, args, level = DEFAULT_LEVEL }) {
   if (DebugConfig.enabled && level <= DebugConfig.level) {
-    console.log(...msgs)
+    console.log(msgs, ...args)
   }
 }
 
 export const logger = {
-  info (...msgs) {
-    log({ msgs, level: Levels.INFO })
+  info (msgs, ...args) {
+    log({ msgs, args, level: Levels.INFO })
   },
-  warn (msgs) {
-    log({ msgs, level: Levels.WARN })
+  warn (msgs, ...args) {
+    log({ msgs, args, level: Levels.WARN })
   },
-  debug (msgs) {
-    log({ msgs, level: Levels.DEBUG })
+  debug (msgs, ...args) {
+    log({ msgs, args, level: Levels.DEBUG })
   },
-  trace (msgs) {
-    log({ msgs, level: Levels.TRACE })
+  trace (msgs, ...args) {
+    log({ msgs, args, level: Levels.TRACE })
   }
 }

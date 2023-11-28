@@ -10,10 +10,11 @@ import { DEFAULT_CONFIG_PATHS } from './defaults.js'
 import options from './commands/options.js'
 import setupGitlabClient from './middlewares/setupGitlabClient.js'
 import setupArguments from './middlewares/setupArguments.js'
+import chalk from 'chalk'
 
 function getConfigPath () {
   for (const path of DEFAULT_CONFIG_PATHS) {
-    logger.info('Checking config file path: ', path)
+    logger.debug('Checking config file path: ', chalk.blue(path))
     if (fs.existsSync(path)) return path
   }
 }
@@ -28,7 +29,6 @@ export default async function main () {
     .command('config', 'Ayarları kontrol et', {}, config) // debug amaçlı
     .options(options) // with default or env values
     .alias('help', 'h')
-    .alias('version', 'v')
     .describe('help', 'Bu yardım metnini göster')
     .describe('version', 'Sürüm numarası')
     .middleware(setupGitlabClient)
@@ -40,7 +40,7 @@ export default async function main () {
       'config-path',
       'Ayarları içeren JSON formatındaki dosya (ör. /etc/.grc)',
       configPath => {
-        logger.info('Reading config file: ', configPath)
+        logger.debug('Reading config file:', chalk.blue(configPath))
         return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
       }
     ) // extra config file if given
@@ -55,7 +55,16 @@ export default async function main () {
       'Ayarları arguman olarak al'
     )
     .epilog(
-      'Daha fazla bilgi için bkz: https://github.com/htekgulds/gitlab-registry-cleaner-cli'
+      `Daha fazla bilgi için bkz: ${chalk.blue(
+        'https://github.com/htekgulds/gitlab-registry-cleaner-cli'
+      )}`
+    )
+    .wrap(120)
+    .showHelpOnFail(
+      false,
+      `Kullanım hakkında bilgi almak için ${chalk.green(
+        '--help'
+      )} argumanını kullanın`
     )
     .parse()
 }

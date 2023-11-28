@@ -1,10 +1,10 @@
 import Gitlab from '../../gitlab/config'
+import { logger } from '../../util'
 
 export default async function config (argv) {
-  console.log('Args:', argv)
   try {
     const response = await Gitlab.client.get('/version')
-    console.log('Gitlab Version:', response.data)
+    logger.info('Gitlab Version:', response.data)
   } catch (err) {
     console.error(err)
   }

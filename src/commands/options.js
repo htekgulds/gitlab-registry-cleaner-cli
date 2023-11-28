@@ -36,5 +36,11 @@ export default {
       "İmajları verilen reegx'e göre sil (interaktif olmayan modda kullanılır)",
     default: DELETE_TAGS_REGEX
   },
-  'dry-run': { describe: 'İmajları gerçekten silme', default: false }
+  'dry-run': { describe: 'İmajları gerçekten silme', default: false },
+  verbose: {
+    alias: 'v',
+    describe:
+      'Log ayrıntı seviyesini belirle (eg. -v -> warn, -vv -> debug gibi)',
+    count: true
+  }
 }

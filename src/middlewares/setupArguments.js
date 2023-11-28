@@ -1,8 +1,12 @@
 import { GroupBy } from '../gitlab/util'
-import { logger } from '../util'
+import { DebugConfig, logger } from '../util'
 
 export default function setupArguments (argv) {
-  logger.info('Setting up arguments')
+  logger.debug('Setting up arguments', argv)
+
+  if (argv.verbose) {
+    DebugConfig.level = argv.verbose + 1
+  }
 
   if (argv.groups) {
     argv.groups = String(argv.groups)

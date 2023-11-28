@@ -2,12 +2,12 @@ import { GROUP_TAGS_REGEX } from '../defaults'
 import { logger } from '../util'
 
 export const GroupBy = {
-  regex: GROUP_TAGS_REGEX,
+  regex: GROUP_TAGS_REGEX, // default
   tagSuffix (items) {
     const obj = items.reduce((all, tag) => {
       const match = tag.match(this.regex)
       const suffix = match?.groups?.suffix || 'no-suffix'
-      logger.info('Match:', suffix)
+      logger.debug('Match:', match)
 
       const current = all[suffix]?.list || []
 
