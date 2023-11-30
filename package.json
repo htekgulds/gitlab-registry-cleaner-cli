@@ -25,7 +25,7 @@
   "scripts": {
     "build": "esbuild src/bin/grc.js --platform=node --bundle --outfile=dist/index.js --minify",
     "watch": "npm run build -- --watch",
-    "package": "pkg dist/index.js --out-path pkg -d --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
+    "package": "pkg dist/index.js -d -o pkg/grc --targets node18-linux-x64,node18-macos-x64,node18-win-x64",
     "lint": "standard"
   },
   "dependencies": {
