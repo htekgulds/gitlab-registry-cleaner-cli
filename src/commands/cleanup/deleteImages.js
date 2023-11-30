@@ -2,13 +2,15 @@ import chalk from 'chalk'
 import Gitlab from '../../gitlab/config'
 import { logger } from '../../util'
 
-export default async function deleteImages (details, selectedTag) {
+export default async function deleteImages (details, selectedTag, { deleteTagsRegex, keepN, olderThan }) {
+  logger.info('İmajlar verilen argumanlara göre siliniyor:', { selectedTag, deleteTagsRegex, keepN, olderThan })
+
   const results = details.filtered.map(repo => {
     logger.debug(chalk.blue(repo.name), 'temizleniyor')
-    const tag = repo.tags.find(tag => tag.group === selectedTag)
+    const tag = !deleteTagsRegex && repo.tags.find(tag => tag.group === selectedTag)
 
-    // Do nothing if group not found or tag count is less than 5
-    if (!tag || tag.list.length <= 5) {
+    // Do nothing if deleteTagsRegex is not defined and group not found or tag count is less than 5
+    if (!deleteTagsRegex && (!tag || tag.list.length <= 5)) {
       logger.warn('Temizlenecek imaj sürümü yok ya da yeterli değil')
       return Promise.resolve()
     }
@@ -16,9 +18,9 @@ export default async function deleteImages (details, selectedTag) {
     return Gitlab.client
       .delete(`/projects/${repo.project_id}/registry/repositories/${repo.id}/tags`, {
         params: {
-          name_regex_delete: `.*-${tag.group}`,
-          keep_n: 5,
-          older_than: '7d'
+          name_regex_delete: deleteTagsRegex || `.*-${tag.group}`,
+          keep_n: keepN,
+          older_than: olderThan
         }
       })
       .then(() => logger.debug(`Temizlik başarılı: ${chalk.blue(repo.name)} - ${chalk.yellow(tag.group)}`))

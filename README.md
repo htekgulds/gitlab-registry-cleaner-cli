@@ -45,7 +45,7 @@ Here is a list of options with their env variable forms and default values:
 - **`keen-n`:** Do not delete `n` number of latest image tags. Env variable: `GRC_KEEP_N`. Default value is `5`.
 - **`older-than`:** Delete image tags older than given time (eg. 5d, 1h). Env variable: `GRC_OLDER_THAN`. Default value is `7d`.
 - **`group-tags-regex`:** Group image tags by given regex when showing image stats or a list of groups to delete. Env variable: `GRC_GROUP_TAGS_REGEX`. Default value is `/^[a-zA-Z0-9.]+(-[0-9]+)?-(.\*)$/`.
-- **`delete-tags-suffix`:** Delete image tags ending with the given suffix. No list will be prompted if this option is provided. Env variable: `GRC_DELETE_TAGS_SUFFIX`. No default value.
+- **`delete-tags-regex`:** Delete image tags with the given regex. No list will be prompted if this option is provided and `--group-tags-regex` option will be ignored. Env variable: `GRC_DELETE_TAGS_SUFFIX`. No default value.
 - **`config-path`:** Config file path for getting the option values from. Env variable: `GRC_CONFIG_PATH`. Default value is `$HOME/.grc`.
 - **`dry-run`:** Do not actually delete the image tags. Env variable: `GRC_DRY_RUN`. Default value is `false`.
 - **`verbose` or `v`:** More detailed logs (3 levels: `-v`, `-vv`, `-vvv`).
@@ -60,7 +60,7 @@ Example config file content:
   "keepN": 3,
   "olderThan": "3d",
   "groupTagsRegex": "/[a-zA-Z0-9.]+-(.*)/",
-  "deleteTagsSuffix": "dev", // *-dev
+  "deleteTagsRegex": ".*-dev",
   "dryRun": true
 }
 ```
