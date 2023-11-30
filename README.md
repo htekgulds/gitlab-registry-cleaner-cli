@@ -28,7 +28,7 @@ You can use the tool with the `grc` command (`grc --help` for all the available 
 
 - `stats`: Get image statistics. Uses `group-tags-regex` option for calculating a group-by-summary
 - `cleanup`: Cleanup images according to options
-- `config`: Check options and Gitlab connection (debug command)
+- `check`: Check options and Gitlab connection (debug command)
 
 ### Options
 
