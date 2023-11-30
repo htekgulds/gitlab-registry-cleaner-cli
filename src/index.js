@@ -1,6 +1,7 @@
 import fs from 'fs'
 import yargs from 'yargs/yargs'
 import { hideBin } from 'yargs/helpers'
+import chalk from 'chalk'
 
 import { logger } from './util.js'
 import stats from './commands/stats/index.js'
@@ -9,7 +10,7 @@ import config from './commands/config/index.js'
 import { DEFAULT_CONFIG_PATHS, GROUP_TAGS_REGEX, KEEP_N, OLDER_THAN } from './defaults.js'
 import setupGitlabClient from './middlewares/setupGitlabClient.js'
 import setupArguments from './middlewares/setupArguments.js'
-import chalk from 'chalk'
+import pkgJson from '../package.json'
 
 function getConfigPath () {
   for (const path of DEFAULT_CONFIG_PATHS) {
@@ -105,17 +106,16 @@ export default async function main () {
       boolean: true
     })
     .alias('help', 'h')
-    .version('version', 'Sürüm numarasını göster', getVersion())
+    .version('version', 'Sürüm numarasını göster', pkgJson.version)
     .describe('help', 'Bu yardım metnini göster')
-    .describe('version', 'Sürüm numarası')
     .middleware(setupGitlabClient)
     .middleware(setupArguments)
     .demandCommand(1) // 1 command required
     // CONFIG
     .config({ extends: getConfigPath() }) // use default config file if exists
     .config('config-path', 'Ayarları içeren JSON formatındaki dosya (ör. /etc/.grc)', configPath => {
-        logger.info('Reading config file:', chalk.blue(configPath))
-        return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
+      logger.info('Reading config file:', chalk.blue(configPath))
+      return JSON.parse(fs.readFileSync(configPath, 'utf-8'))
     }) // extra config file if given
     .env('GRC') // use env variables (eg. GRC_MY_VAR) to provide options. Command line arguments take presedence
     // HELP
