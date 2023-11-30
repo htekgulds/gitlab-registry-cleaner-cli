@@ -2,6 +2,7 @@ import boxen from 'boxen'
 import chalk from 'chalk'
 import Config from './config.js'
 
+// TODO: Kullanılmıyor ama örnek olması için duruyor
 export default function help () {
   console.log(boxen(`${chalk.yellow('Uyarı:')}
 
