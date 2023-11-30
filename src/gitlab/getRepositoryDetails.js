@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import { logger } from '../util.js'
 import Gitlab from './config.js'
-import { GroupBy } from './util.js'
+import { groupByTagSuffix } from './util.js'
 
 export default function getRepositoryDetails (repositories) {
   const response = repositories.map(async repo => {
@@ -19,7 +19,7 @@ export default function getRepositoryDetails (repositories) {
       name: repo.path,
       project_id: repo.project_id,
       tags_count: details.data.tags_count,
-      tags: GroupBy.tagSuffix(details.data.tags.map(tag => tag.name))
+      tags: groupByTagSuffix(details.data.tags.map(tag => tag.name))
     }
   })
 

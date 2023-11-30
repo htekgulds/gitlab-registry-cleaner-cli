@@ -1,26 +1,23 @@
-import { GROUP_TAGS_REGEX } from '../defaults'
 import { logger } from '../util'
+import Config from '../config'
 
-export const GroupBy = {
-  regex: GROUP_TAGS_REGEX, // default
-  tagSuffix (items) {
-    const obj = items.reduce((all, tag) => {
-      const match = tag.match(this.regex)
-      const suffix = match?.groups?.suffix || '[no-suffix]'
-      logger.debug('Match:', match)
+export function groupByTagSuffix (items) {
+  const obj = items.reduce((all, tag) => {
+    const match = tag.match(Config.args.groupTagsRegex)
+    const suffix = match?.groups?.suffix || '[no-suffix]'
+    logger.debug('Match:', match)
 
-      const current = all[suffix]?.list || []
+    const current = all[suffix]?.list || []
 
-      return {
-        ...all,
-        [suffix]: {
-          list: [...current, tag]
-        }
+    return {
+      ...all,
+      [suffix]: {
+        list: [...current, tag]
       }
-    }, {})
+    }
+  }, {})
 
-    return Object.keys(obj).map(key => ({ group: key, ...obj[key] }))
-  }
+  return Object.keys(obj).map(key => ({ group: key, ...obj[key] }))
 }
 
 // 1. 5'ten az imajı olan depoları sayma

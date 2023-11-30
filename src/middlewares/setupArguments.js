@@ -1,5 +1,4 @@
 import Config from '../config'
-import { GroupBy } from '../gitlab/util'
 import { logger } from '../util'
 
 export default function setupArguments (argv) {
@@ -7,15 +6,12 @@ export default function setupArguments (argv) {
     Config.logLevel = argv.verbose
   }
 
-  logger.info('Setting up arguments', argv)
-
   if (argv.groups) {
     argv.groups = String(argv.groups)
       ?.split(',')
       .filter(i => i && i.trim() !== '')
   }
 
-  if (argv.groupTagsRegex) {
-    GroupBy.regex = argv.groupTagsRegex
-  }
+  Config.args = argv
+  logger.info('Setting up arguments', Config)
 }
