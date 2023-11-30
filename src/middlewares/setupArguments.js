@@ -1,9 +1,10 @@
+import Config from '../config'
 import { GroupBy } from '../gitlab/util'
-import { DebugConfig, logger } from '../util'
+import { logger } from '../util'
 
 export default function setupArguments (argv) {
   if (argv.verbose) {
-    DebugConfig.level = argv.verbose
+    Config.logLevel = argv.verbose
   }
 
   logger.info('Setting up arguments', argv)
