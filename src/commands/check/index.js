@@ -1,7 +1,7 @@
 import Gitlab from '../../gitlab/config'
 import { logger } from '../../util'
 
-export default async function config (argv) {
+export default async function check (argv) {
   try {
     const response = await Gitlab.client.get('/version')
     logger.warn('WARN: level 0')

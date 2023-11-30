@@ -6,7 +6,7 @@ import chalk from 'chalk'
 import { logger } from './util.js'
 import stats from './commands/stats/index.js'
 import cleanup from './commands/cleanup/index.js'
-import config from './commands/config/index.js'
+import check from './commands/check/index.js'
 import { DEFAULT_CONFIG_PATHS, GROUP_TAGS_REGEX, KEEP_N, OLDER_THAN } from './defaults.js'
 import setupGitlabClient from './middlewares/setupGitlabClient.js'
 import setupArguments from './middlewares/setupArguments.js'
@@ -26,7 +26,7 @@ export default async function main () {
     // COMMANDS
     .command('stats', 'İmaj istatistikleri', {}, stats)
     .command('cleanup', 'İmajları temizle', {}, cleanup)
-    .command('config', 'Ayarları kontrol et', {}, config) // debug amaçlı
+    .command('check', 'Ayarları kontrol et', {}, check) // debug amaçlı
     /**
      * option: --gitlab-base-url, --url
      * env: GRC_GITLAB_BASE_URL
