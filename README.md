@@ -18,7 +18,16 @@ npm install --global gitlab-registry-cleaner-cli
 yarn global add gitlab-registry-cleaner-cli
 ```
 
-Or, you can get fetch the binary suitable for your OS from the [Releases](https://github.com/htekgulds/gitlab-registry-cleaner-cli/releases) page.
+Or, you can get fetch the binary suitable for your OS from the [Releases](https://github.com/htekgulds/gitlab-registry-cleaner-cli/releases) page. You can use the following script to install it quickly:
+
+```sh
+# Download latest version
+wget https://github.com/htekgulds/gitlab-registry-cleaner-cli/releases/latest/download/grc-linux -O grc
+# Install under /usr/local/bin
+sudo install -o root -g root -m 755 grc /usr/local/bin/grc
+# Remove residue
+rm -f grc
+```
 
 ## Usage
 
