@@ -127,5 +127,7 @@ export default async function main () {
     .epilog(`Daha fazla bilgi için bkz: ${chalk.blue('https://github.com/htekgulds/gitlab-registry-cleaner-cli')}`)
     .wrap(120)
     .showHelpOnFail(false, `Kullanım hakkında bilgi almak için ${chalk.green('--help')} argümanını kullanın`)
+    // fail on unknwon command and options
+    .strict()
     .parse()
 }
