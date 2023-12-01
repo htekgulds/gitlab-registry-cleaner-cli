@@ -1,10 +1,8 @@
 import Config from '../config'
-import { logger } from '../util'
+import { DEFAULT_LEVEL, logger } from '../util'
 
 export default function setupArguments (argv) {
-  if (argv.verbose) {
-    Config.logLevel = argv.verbose
-  }
+  Config.logLevel = argv.verbose || DEFAULT_LEVEL
 
   if (argv.groups) {
     argv.groups = String(argv.groups)
