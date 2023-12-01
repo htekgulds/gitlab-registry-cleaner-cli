@@ -106,8 +106,8 @@ export default async function main () {
       boolean: true
     })
     .alias('help', 'h')
-    .version('version', 'Sürüm numarasını göster', pkgJson.version)
     .describe('help', 'Bu yardım metnini göster')
+    .version('version', 'Sürüm numarasını göster', pkgJson.version)
     .middleware(setupGitlabClient)
     .middleware(setupArguments)
     .demandCommand(1) // 1 command required
